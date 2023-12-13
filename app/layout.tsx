@@ -4,6 +4,7 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import ThemeProvider from "@/components/provider/ThemeProvider";
 import ModeToggle from "@/components/mode-toggle";
+import { ModalProvide } from "@/components/provider/modal-provide";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,6 +28,7 @@ export default function RootLayout({
             enableSystem={false}
             storageKey="discord-theme"
           >
+            <ModalProvide />
             {children}
           </ThemeProvider>
         </body>
