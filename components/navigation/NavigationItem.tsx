@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Actiontooltip from "./actiontooltip";
+import Actiontooltip from "../actiontooltip";
 import { cn } from "@/lib/utils";
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";

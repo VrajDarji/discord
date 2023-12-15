@@ -2,8 +2,12 @@
 
 import { useEffect, useState } from "react";
 import CreateServerModal from "../modals/create-server-modal";
+import InviteModal from "../modals/invite-modal";
+import UpdateServerModal from "../modals/update-server";
+import DeleteServerModal from "../modals/delete-server";
+import { MembersModal } from "../modals/members-modal";
 
-export const ModalProvide = () => {
+export const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
   useEffect(() => {
     setIsMounted(true);
@@ -14,6 +18,10 @@ export const ModalProvide = () => {
   return (
     <>
       <CreateServerModal />
+      <InviteModal />
+      <UpdateServerModal />
+      <DeleteServerModal />
+      <MembersModal />
     </>
   );
 };

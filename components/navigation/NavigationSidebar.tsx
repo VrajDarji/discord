@@ -3,10 +3,10 @@ import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
 import React from "react";
 import NavigationAction from "./NavigationAction";
-import { Separator } from "./ui/separator";
-import { ScrollArea } from "./ui/scroll-area";
+import { Separator } from "../ui/separator";
+import { ScrollArea } from "../ui/scroll-area";
 import NavigationItem from "./NavigationItem";
-import ModeToggle from "./mode-toggle";
+import ModeToggle from "../mode-toggle";
 import { UserButton } from "@clerk/nextjs";
 
 const NavigationSidebar = async () => {
