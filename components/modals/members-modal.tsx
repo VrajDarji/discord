@@ -128,14 +128,22 @@ export const MembersModal = () => {
                             </DropdownMenuSubTrigger>
                             <DropdownMenuPortal>
                               <DropdownMenuSubContent>
-                                <DropdownMenuItem>
+                                <DropdownMenuItem
+                                  onClick={() => {
+                                    onRoleChange(member.id, "GUEST");
+                                  }}
+                                >
                                   <Shield className="h-4 w-4 mr-2" />
                                   Guest
                                   {member.role === "GUEST" && (
                                     <Check className="h-4 w-4 ml-auto" />
                                   )}
                                 </DropdownMenuItem>
-                                <DropdownMenuItem>
+                                <DropdownMenuItem
+                                  onClick={() =>
+                                    onRoleChange(member.id, "MODERATOR")
+                                  }
+                                >
                                   <Shield className="h-4 w-4 mr-2" />
                                   Moderator
                                   {member.role === "MODERATOR" && (

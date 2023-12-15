@@ -56,6 +56,3 @@ export async function PATCH(req:Request,{params}:{params:{serverId:string}}) {
         
     }
 }
-export async function GET(req:Request,{params}:{params:{serverId:string}}) {
-    return NextResponse.json({message:params.serverId})
-}
