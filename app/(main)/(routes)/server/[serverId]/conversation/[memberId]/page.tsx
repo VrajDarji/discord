@@ -17,7 +17,7 @@ const page = async ({
   }
   const currentMember = await db.member.findFirst({
     where: {
-      serverId: params.serverId,
+      serverId: params?.serverId,
       profileId: profile.id,
     },
     include: {
@@ -32,7 +32,7 @@ const page = async ({
     params.memberId
   );
   if (!conversation) {
-    return redirect(`/server/${params.serverId}`);
+    return redirect(`/server/${params?.serverId}`);
   }
   const { memberOne, memberTwo } = conversation;
   const otherMember =

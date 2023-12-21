@@ -27,7 +27,6 @@ const DeleteServerModal = () => {
       router.refresh();
       onClose();
       redirect("/");
-      console.log(response.data);
     } catch (err) {
       console.log({ ClientError: err });
     } finally {

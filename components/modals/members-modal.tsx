@@ -56,7 +56,7 @@ export const MembersModal = () => {
       const url = qs.stringifyUrl({
         url: `/api/member/${memberId}`,
         query: {
-          serverId: server.id,
+          serverId: server?.id,
         },
       });
       const response = await axios.delete(url);
