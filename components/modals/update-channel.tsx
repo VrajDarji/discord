@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -33,7 +32,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useModal } from "@/hooks/useModalStore";
 import { ChannelType } from "@prisma/client";
-
+import qs from "query-string";
 const formSchema = z.object({
   name: z
     .string()
@@ -68,12 +67,18 @@ const UpdateChannelModal = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      await axios.patch(`/api/channel/${channel?.id}`, values);
+      const url = qs.stringifyUrl({
+        url: `/api/channel/${channel?.id}`,
+        query: {
+          serverId: server?.id,
+        },
+      });
+      await axios.patch(url, values);
       form.reset();
-      onClose();
       router.refresh();
+      onClose();
     } catch (err) {
-      console.error(err);
+      console.error({ ClientError: err });
     }
   };
   const handleClose = () => {
@@ -85,7 +90,7 @@ const UpdateChannelModal = () => {
       <DialogContent className="bg-white text-black p-0 overflow-hidden">
         <DialogHeader className="pt-8 px-6">
           <DialogTitle className="text-center text-2xl font-bold">
-            Create Channel
+            Update Channel
           </DialogTitle>
         </DialogHeader>
         <Form {...form}>
@@ -150,7 +155,7 @@ const UpdateChannelModal = () => {
             </div>
             <DialogFooter className="bg-gray-100 px-6 py-4">
               <Button variant={"primary"} disabled={isLoading}>
-                Create
+                Save
               </Button>
             </DialogFooter>
           </form>
