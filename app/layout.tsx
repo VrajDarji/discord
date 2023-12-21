@@ -3,8 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import ThemeProvider from "@/components/provider/ThemeProvider";
-import ModeToggle from "@/components/mode-toggle";
 import { ModalProvider } from "@/components/provider/modal-provide";
+import { SocketProvider } from "@/components/provider/socket-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,8 +28,10 @@ export default function RootLayout({
             enableSystem={false}
             storageKey="discord-theme"
           >
-            <ModalProvider />
-            {children}
+            <SocketProvider>
+              <ModalProvider />
+              {children}
+            </SocketProvider>
           </ThemeProvider>
         </body>
       </html>
