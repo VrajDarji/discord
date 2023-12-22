@@ -1,5 +1,6 @@
 import ChatHeader from "@/components/chat/ChatHeader";
 import ChatInput from "@/components/chat/ChatInput";
+import ChatMessage from "@/components/chat/ChatMessage";
 import CurrentProfile from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
@@ -19,13 +20,13 @@ const page = async ({
       id: params?.channelId,
     },
   });
-  const members = await db.member.findFirst({
+  const member = await db.member.findFirst({
     where: {
       serverId: params?.serverId,
       profileId: profile.id,
     },
   });
-  if (!channel || !members) {
+  if (!channel || !member) {
     redirect("/");
   }
   return (
@@ -35,7 +36,20 @@ const page = async ({
         name={channel.name}
         type="channel"
       />
-      <div className="flex-1"></div>
+      <ChatMessage
+        member={member}
+        name={channel.name}
+        type={"channel"}
+        apiUrl="/api/messages"
+        socketUrl="/api/socket/messages"
+        socketQuery={{
+          channelId: channel.id,
+          serverId: channel.serverId,
+        }}
+        paramKey={"channelId"}
+        paramValue={channel.id}
+        chatId={channel.id}
+      />
       <ChatInput
         apiUrl="/api/socket/messages"
         query={{ channelId: channel.id, serverId: channel.serverId }}

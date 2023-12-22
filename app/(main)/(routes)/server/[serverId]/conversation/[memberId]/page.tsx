@@ -1,5 +1,6 @@
 import ChatHeader from "@/components/chat/ChatHeader";
 import ChatInput from "@/components/chat/ChatInput";
+import ChatMessage from "@/components/chat/ChatMessage";
 import { getOrCreateConversation } from "@/lib/conversation";
 import CurrentProfile from "@/lib/current-profile";
 import { db } from "@/lib/db";
@@ -46,7 +47,19 @@ const page = async ({
         name={otherMember.profile.name}
         serverId={params.serverId}
       />
-      <div className="flex-1">Future Messages</div>
+      <ChatMessage
+        member={otherMember}
+        name={otherMember.profile.name}
+        type={"conversation"}
+        apiUrl="/api/direct-messages"
+        socketUrl="/api/socket/direct-messages"
+        socketQuery={{
+          conversationId: conversation.id,
+        }}
+        paramKey={"conversationId"}
+        paramValue={conversation.id}
+        chatId={conversation.id}
+      />
       <ChatInput
         apiUrl="/api/socket/direct-messages"
         query={{ conversationId: conversation.id }}
