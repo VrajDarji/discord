@@ -2,7 +2,6 @@ import ChatHeader from "@/components/chat/ChatHeader";
 import ChatInput from "@/components/chat/ChatInput";
 import ChatMessage from "@/components/chat/ChatMessage";
 import MediaRoom from "@/components/media-room";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import CurrentProfile from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import { ChannelType } from "@prisma/client";
