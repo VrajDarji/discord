@@ -6,6 +6,7 @@ import ThemeProvider from "@/components/provider/ThemeProvider";
 import { ModalProvider } from "@/components/provider/modal-provide";
 import { SocketProvider } from "@/components/provider/socket-provider";
 import { QueryProvider } from "@/components/provider/query-provider";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,7 +32,10 @@ export default function RootLayout({
           >
             <SocketProvider>
               <ModalProvider />
-              <QueryProvider>{children}</QueryProvider>
+              <QueryProvider>
+                {children}
+                <SpeedInsights />
+              </QueryProvider>
             </SocketProvider>
           </ThemeProvider>
         </body>

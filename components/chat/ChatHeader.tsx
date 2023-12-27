@@ -4,7 +4,6 @@ import MobileToggle from "../mobile-toggle";
 import UseAvatar from "../UseAvatar";
 import SocketIndicator from "../socket-indicator";
 import ChatVideoButton from "./ChatVideoButton";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 
 interface ChatHeaderProps {
   serverId: string;
@@ -32,7 +31,7 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({
       <div className="ml-auto flex items-center ">
         {type === "conversation" && <ChatVideoButton />}
         <SocketIndicator />
-        <SpeedInsights />
+        
       </div>
     </div>
   );
