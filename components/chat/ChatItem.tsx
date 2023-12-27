@@ -1,6 +1,13 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Member, Profile, MemberRole } from "@prisma/client";
-import { ShieldAlert, ShieldCheck, FileIcon, Edit, Trash } from "lucide-react";
+import {
+  ShieldAlert,
+  ShieldCheck,
+  FileIcon,
+  Edit,
+  Trash,
+  Loader2,
+} from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -15,6 +22,7 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import qs from "query-string";
 import axios from "axios";
+import EmojiPicker from "../EmojiPicker";
 
 interface ChatItemProps {
   id: string;
@@ -219,6 +227,17 @@ const ChatItem: React.FC<ChatItemProps> = ({
                             placeholder="Edited message"
                             {...field}
                           />
+                          <div className="absolute top-2 right-4">
+                            {isLoading ? (
+                              <Loader2 className="h-4 w-4 animate-spin" />
+                            ) : (
+                              <EmojiPicker
+                                onChange={(emoji: string) => {
+                                  field.onChange(`${field.value}${emoji}`);
+                                }}
+                              />
+                            )}
+                          </div>
                         </div>
                       </FormControl>
                     </FormItem>

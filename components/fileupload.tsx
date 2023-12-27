@@ -17,7 +17,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
   onChange,
 }) => {
   const fileType = value?.split(".").pop();
-  if (value && fileType === "image") {
+  if (value && endpoint === "serverImage") {
     return (
       <div className="relative h-20 w-20">
         <Image src={value} fill alt="image" className="rounded-full" />
@@ -31,7 +31,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
       </div>
     );
   }
-  if (value && fileType !== "image") {
+  if (value && endpoint === "messageFile") {
     return (
       <div className="relative flex items-center p-2 mt-2 rounded-md bg-background/10">
         <FileIcon className="h-10 w-10 file-indigo-200" />

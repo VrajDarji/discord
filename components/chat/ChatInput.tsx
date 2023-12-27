@@ -4,13 +4,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { Form, FormControl, FormField } from "../ui/form";
-import { Plus, Smile } from "lucide-react";
+import { Loader2, Plus, Smile } from "lucide-react";
 import { Input } from "../ui/input";
 import axios from "axios";
 import qs from "query-string";
 import { useModal } from "@/hooks/useModalStore";
 import EmojiPicker from "../EmojiPicker";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 interface ChatInputProps {
   apiUrl: string;
   query: Record<string, any>;
@@ -31,9 +32,10 @@ const ChatInput: React.FC<ChatInputProps> = ({ apiUrl, query, name, type }) => {
       content: "",
     },
   });
-  const isLoading = form.formState.isSubmitting;
+  const [isLoading, setIsLoading] = useState(false);
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
+      setIsLoading(true);
       const url = qs.stringifyUrl({
         url: apiUrl,
         query: query,
@@ -43,6 +45,8 @@ const ChatInput: React.FC<ChatInputProps> = ({ apiUrl, query, name, type }) => {
       router.refresh();
     } catch (err) {
       console.log({ clientError: err });
+    } finally {
+      setIsLoading(false);
     }
   };
   return (
@@ -72,11 +76,15 @@ const ChatInput: React.FC<ChatInputProps> = ({ apiUrl, query, name, type }) => {
                   {...field}
                 />
                 <div className="absolute top-7 right-8">
-                  <EmojiPicker
-                    onChange={(emoji: string) => {
-                      field.onChange(`${field.value}${emoji}`);
-                    }}
-                  />
+                  {isLoading ? (
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                  ) : (
+                    <EmojiPicker
+                      onChange={(emoji: string) => {
+                        field.onChange(`${field.value}${emoji}`);
+                      }}
+                    />
+                  )}
                 </div>
               </div>
             </FormControl>
