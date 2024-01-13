@@ -70,7 +70,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ apiUrl, query, name, type }) => {
                 </button>
                 <Input
                   disabled={isLoading}
-                  className="px-14 py-6 bg-zinc-20/90 dark:bg-zinc-700/75 border-none focus-visible:rinf-0 focus-visible:ring-offset-0 text-zinc-600 dark:text-zinc-200"
+                  className="px-14 py-6 bg-zinc-200/90 dark:bg-zinc-700/75 border-none focus-visible:rinf-0 focus-visible:ring-offset-0 text-zinc-600 dark:text-zinc-200"
                   placeholder={`Message ${
                     type === "conversation" ? name : "#" + name
                   }`}
@@ -78,7 +78,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ apiUrl, query, name, type }) => {
                 />
                 <div className="absolute top-7 right-8">
                   {isLoading ? (
-                    <Loader2 className="h-4 w-4 animate-spin" />
+                    <Loader2 className="animate-spin" />
                   ) : (
                     <EmojiPicker
                       onChange={(emoji: string) => {

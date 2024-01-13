@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import ThemeProvider from "@/components/provider/ThemeProvider";
@@ -8,7 +8,7 @@ import { SocketProvider } from "@/components/provider/socket-provider";
 import { QueryProvider } from "@/components/provider/query-provider";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
-const inter = Inter({ subsets: ["latin"] });
+const font = Open_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Chat App",
@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
-        <body className={inter.className}>
+        <body className={font.className}>
           <ThemeProvider
             attribute="class"
             defaultTheme="dark"

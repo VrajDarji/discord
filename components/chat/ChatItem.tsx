@@ -229,7 +229,7 @@ const ChatItem: React.FC<ChatItemProps> = ({
                           />
                           <div className="absolute top-2 right-4">
                             {isLoading ? (
-                              <Loader2 className="h-4 w-4 animate-spin" />
+                              <Loader2 className="animate-spin" />
                             ) : (
                               <EmojiPicker
                                 onChange={(emoji: string) => {
