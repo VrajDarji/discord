@@ -1,8 +1,6 @@
 import CurrentProfile from "@/lib/current-profile";
 import { db } from "@/lib/db";
-import { redirectToSignIn } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
-import React from "react";
 
 const page = async ({ params }: { params: { serverId: string } }) => {
   const profile = await CurrentProfile();

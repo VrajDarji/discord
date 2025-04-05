@@ -2,7 +2,6 @@ import React from "react";
 import { intialProfile } from "@/lib/intial-profile";
 import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
-import { UserButton } from "@clerk/nextjs";
 import IntialModal from "@/components/modals/intial-modal";
 
 const page = async () => {
